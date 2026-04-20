@@ -25,3 +25,45 @@ export interface Message {
 export interface ConversationWithMessages extends Conversation {
   messages: Message[]
 }
+
+// Dental Clinic Types
+export interface Patient {
+  id: string
+  phone_number: string
+  full_name: string | null
+  email: string | null
+  created_at: string
+}
+
+export interface Service {
+  id: string
+  name: string
+  name_slug: string
+  description: string | null
+  category: string
+  duration_minutes: number
+  price: number
+  currency: string
+  is_active: boolean
+}
+
+export interface Appointment {
+  id: string
+  patient_id: string
+  service_id: string
+  dentist_id: string | null
+  appointment_date: string
+  end_time: string
+  status: 'pending' | 'confirmed' | 'cancelled' | 'cancelled_clinic' | 'completed' | 'no_show' | 'rescheduled'
+  reason: string | null
+  created_at: string
+}
+
+export interface Reminder {
+  id: string
+  appointment_id: string
+  reminder_type: 'confirmation' | '24h_before' | '1h_before' | 'custom'
+  status: 'pending' | 'sent' | 'failed'
+  scheduled_for: string | null
+  sent_at: string | null
+}
